@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev",
+    "lint:prettier:check": "prettier --check .",
+    "lint:prettier:fix": "prettier --write ."
   },
   "dependencies": {
     "next": "^15.1.4",
@@ -10,6 +12,7 @@
   "devDependencies": {
     "@types/node": "22.10.5",
     "@types/react": "19.0.4",
+    "prettier": "^3.4.2",
     "typescript": "5.7.3"
   }
 }
