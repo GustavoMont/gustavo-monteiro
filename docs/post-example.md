@@ -4,6 +4,7 @@ publisded-date: 2025-01-12
 updated-date: 2025-01-12
 type: TEXT
 tags: [doc, exemplo, teste]
+description: Esse campo é uma descrção chamativa sobre o que é a postagem. Deve ser chamativa e clara, induzindo o usuário a clicar
 ---
 
 # Metadados
