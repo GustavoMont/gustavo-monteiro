@@ -4,6 +4,7 @@ published-date: 2025-01-12
 updated-date: 2025-01-12
 type: TEXT
 tags: [doc, exemplo, teste]
+description: Isso é um briffing sobre o que é p post. Algo que chame atenção de alguém que esteja vendo e faça com que clique no post pra dar uma olhada
 ---
 
 # Metadados

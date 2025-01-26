@@ -17,6 +17,7 @@ async function getPostByFilename(filename: string): Promise<Post> {
     updatedDate: data["updated-date"],
     tags: data.tags,
     type: data.type,
+    description: data.description,
   };
 }
 
