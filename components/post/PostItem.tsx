@@ -1,5 +1,6 @@
-import { Post, PostType } from "@/@types/post.type";
+import { Post } from "@/@types/post.type";
 import { CheveronRight } from "@/assets/icons";
+import { getPostTypeName } from "@/utils/post.utils";
 import Link from "next/link";
 
 type Props = {
@@ -7,11 +8,6 @@ type Props = {
 };
 
 export function PostItem({ post }: Props) {
-  const typeTexts: Record<PostType, string> = {
-    POETRY: "Poema",
-    TEXT: "Texto",
-  };
-
   return (
     <div className="flex flex-col gap-1 max-w-xl">
       <Link className="flex flex-col gap-0.5" href={`/posts/${post.slug}`}>
@@ -27,7 +23,7 @@ export function PostItem({ post }: Props) {
       <span
         className={`${post.type === "TEXT" ? "bg-accent" : "bg-primary"} text-base-100 font-semibold text-xs w-min px-2 py-1 rounded-tr-md rounded-bl-md rounded-tl-sm rounded-br-sm`}
       >
-        {typeTexts[post.type]}
+        {getPostTypeName(post.type)}
       </span>
       <p>{post.description}</p>
       <Link
