@@ -15,6 +15,8 @@ A ideia é que tenha os tipos: `POETRY`, e `TEXT` (talvez adicione outros como `
 
 Esses tipos vão ser úteis tanto para filtros quanto para diferentes estilizações pra cada.
 
+> Aqui meu grande border
+
 ## Tags
 
 As tags vão ser pra categorizar o conteúdo de cada post, podendo criar abas ou separá-los em categorias futuramente.
