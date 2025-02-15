@@ -1,9 +1,8 @@
 import { Post } from "@/@types/post.type";
-import { InstagramIcon } from "@/assets/icons";
 import { Avatar } from "@/components/Avatar";
 import { PostItem } from "@/components/post/PostItem";
+import { SocialLinks } from "@/components/SocialLinks";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 import React from "react";
 
 type Props = {
@@ -24,12 +23,7 @@ export default function Home({ posts }: Props) {
             Observo tudo a minha volta, tentando transformar pesadelo em uma boa
             história, observo o que me cerca, peço a Deus pra ser um poeta
           </p>
-          <Link
-            href={"https://www.instagram.com/gustavomont_136/"}
-            target="_blank"
-          >
-            <InstagramIcon className="w-6 h-6 fill-accent" />
-          </Link>
+          <SocialLinks />
         </div>
       </header>
       <main className="flex flex-col gap-4 py-5">
