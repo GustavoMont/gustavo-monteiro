@@ -11,5 +11,13 @@ type Props = {
 export const PostStyleContext = ({ post, renderers }: Props) => {
   const Renderer = renderers[post.type];
 
-  return <Renderer post={post} />;
+  return (
+    <>
+      <p className="text-xs">
+        {new Date(post.publishedDate).toLocaleDateString("pt-br")}
+      </p>
+
+      <Renderer post={post} />
+    </>
+  );
 };

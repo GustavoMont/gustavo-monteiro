@@ -7,9 +7,6 @@ type Props = DetailedHTMLProps<
 
 export function H1(props: Props) {
   return (
-    <h1
-      {...props}
-      className="text-primary text-4xl font-medium mb-5 mt-2 p-0"
-    />
+    <h1 {...props} className="text-primary text-4xl font-medium mb-5 p-0" />
   );
 }

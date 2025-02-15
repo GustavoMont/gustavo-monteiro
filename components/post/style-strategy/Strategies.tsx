@@ -18,7 +18,7 @@ export const TextPostStrategy: PostStrategy = ({ post }) => {
 
 export const PoetryPostStrategy: PostStrategy = ({ post }) => {
   return (
-    <main className="pb-4">
+    <main className="pb-5">
       <ReactMarkdown
         components={{
           h1: H1,
