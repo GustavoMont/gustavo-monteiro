@@ -1,10 +1,10 @@
 ---
-title: Example file
+title: Noite Bela
 published-date: 2025-01-12
 updated-date: 2025-01-12
 type: POETRY
 tags: [doc, exemplo, teste]
-description: Isso é um briffing sobre o que é p post. Algo que chame atenção de alguém que esteja vendo e faça com que clique no post pra dar uma olhada
+description: Observar as coisas a noite parece mais interessante.
 ---
 
 # Noite Bela

@@ -19,7 +19,7 @@ const tailwindConfig = {
           primary: "#B131FA",
           secondary: "#FF1CC0",
           accent: "#3F8EFC",
-          "base-100": "#272727",
+          "base-100": "#161616",
         },
         light: {
           ...winterTheme,
