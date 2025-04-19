@@ -11,6 +11,11 @@ export default function Document() {
           crossOrigin=""
         />
         <link
+          rel="shortcut icon"
+          href="assets/favicon.ico"
+          type="image/x-icon"
+        />
+        <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap"
           rel="stylesheet"
         ></link>
