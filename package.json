@@ -6,7 +6,8 @@
     "dev": "next dev",
     "lint:eslint": "next lint --dir .",
     "lint:prettier": "prettier . -c",
-    "lint:prettier:fix": "prettier . --write"
+    "lint:prettier:fix": "prettier . --write",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
     "eslint": "9.32.0",
     "eslint-config-next": "15.4.5",
     "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "typescript": "5.9.2"
   }
