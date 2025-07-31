@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev",
+    "lint:eslint": "next lint --dir ."
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,8 @@
   "devDependencies": {
     "@types/node": "24.1.0",
     "@types/react": "19.1.9",
+    "eslint": "9.32.0",
+    "eslint-config-next": "15.4.5",
     "typescript": "5.9.2"
   }
 }
