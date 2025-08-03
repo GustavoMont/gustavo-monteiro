@@ -25,11 +25,11 @@ function MobileHeader() {
 function DesktopHeader() {
   return (
     <>
-      <aside className="hidden fixed h-screen top-0 w-80 lg:flex flex-col py-4 justify-between">
+      <aside className="hidden fixed h-screen top-0 left-8 w-80 lg:flex flex-col py-4 justify-between">
         <Presentation />
         <Menu />
       </aside>
-      <header className="lg:pl-[352px] hidden lg:flex flex-col gap-6 mb-6">
+      <header className="hidden lg:flex flex-col gap-6 mb-6">
         <h1 className="text-primary text-2xl font-medium">Gustavo Monteiro</h1>
         <hr className="border-primary" />
       </header>

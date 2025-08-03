@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import "@/styles/globals.css";
 import { Montserrat } from "next/font/google";
@@ -13,9 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br" className={montserrat.className}>
-      <body className="p-4 lg:px-8 py-4 min-h-screen w-full max-w-[1592px] mx-auto">
+      <body className="p-4 lg:pl-96 lg:px-8 py-4 min-h-screen w-full flex flex-col max-w-[1592px] mx-auto">
         <Header />
-        <main className="lg:pl-[352px]">{children}</main>
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
