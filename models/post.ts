@@ -1,5 +1,6 @@
 import { Post, PostTypeEnum } from "@/@types/post";
 import { readdir, readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import grayMatter from "gray-matter";
 
@@ -10,7 +11,13 @@ type ListParams = Partial<{
 const POST_PATH = "_posts";
 
 async function listPosts({ exclude }: ListParams = {}): Promise<Post[]> {
+  const dirExists = existsSync(POST_PATH);
+  if (!dirExists) {
+    return [];
+  }
+
   const allFiles = await readdir(resolve(POST_PATH));
+
   const posts: Post[] = [];
 
   for (const fileName of allFiles) {
