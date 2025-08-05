@@ -1,8 +1,7 @@
 import { Post, PostTypeEnum } from "@/@types/post";
-import { readdir, readFile } from "node:fs/promises";
-import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import grayMatter from "gray-matter";
+import fileReader from "./file-reader";
 
 type ListParams = Partial<{
   exclude: string;
@@ -11,12 +10,7 @@ type ListParams = Partial<{
 const POST_PATH = "_posts";
 
 async function listPosts({ exclude }: ListParams = {}): Promise<Post[]> {
-  const dirExists = existsSync(POST_PATH);
-  if (!dirExists) {
-    return [];
-  }
-
-  const allFiles = await readdir(resolve(POST_PATH));
+  const allFiles = await fileReader.listDirFiles(resolve(POST_PATH));
 
   const posts: Post[] = [];
 
@@ -34,7 +28,7 @@ async function listPosts({ exclude }: ListParams = {}): Promise<Post[]> {
 
 async function findBySlug(slug: string): Promise<Post> {
   const fileName = `${slug}.md`;
-  const fileContent = await readFile(resolve(POST_PATH, fileName), "utf-8");
+  const fileContent = await fileReader.readFile(resolve(POST_PATH, fileName));
   const { content, data } = grayMatter(fileContent);
   const writtenAt = data.writtenAt.toISOString();
   const type: PostTypeEnum = data.type;
