@@ -1,8 +1,12 @@
 import { readdir, readFile as fsReadFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 
+function checkDir(path: string) {
+  return existsSync(path);
+}
+
 async function listDirFiles(path: string): Promise<string[]> {
-  const dirExists = existsSync(path);
+  const dirExists = checkDir(path);
   if (!dirExists) {
     return [];
   }
@@ -16,6 +20,6 @@ async function readFile(path: string): Promise<string> {
   return fileContent;
 }
 
-const fileReader = { listDirFiles, readFile };
+const fileReader = { listDirFiles, readFile, checkDir };
 
 export default fileReader;
