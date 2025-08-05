@@ -7,6 +7,8 @@
     "lint:eslint": "next lint --dir .",
     "lint:prettier": "prettier . -c",
     "lint:prettier:fix": "prettier . --write",
+    "test": "jest --runInBand",
+    "test:watch": "jest --runInBand --watchAll",
     "prepare": "husky"
   },
   "keywords": [],
@@ -24,6 +26,7 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
     "@types/jest": "^30.0.0",
     "@types/node": "24.1.0",
     "@types/react": "19.1.9",

@@ -19,7 +19,7 @@ async function listPosts({ exclude }: ListParams = {}): Promise<Post[]> {
 
     if (slug === exclude) continue;
 
-    const post: Post = await findBySlug(slug);
+    const post = await findBySlug(slug);
     posts.push(post);
   }
 
@@ -28,7 +28,12 @@ async function listPosts({ exclude }: ListParams = {}): Promise<Post[]> {
 
 async function findBySlug(slug: string): Promise<Post> {
   const fileName = `${slug}.md`;
-  const fileContent = await fileReader.readFile(resolve(POST_PATH, fileName));
+  let fileContent: string;
+  try {
+    fileContent = await fileReader.readFile(resolve(POST_PATH, fileName));
+  } catch {
+    return null;
+  }
   const { content, data } = grayMatter(fileContent);
   const writtenAt = data.writtenAt.toISOString();
   const type: PostTypeEnum = data.type;
@@ -44,6 +49,6 @@ async function findBySlug(slug: string): Promise<Post> {
   };
 }
 
-const post = { listPosts, findBySlug };
+const post = { listPosts, findBySlug, POST_PATH };
 
 export default post;
