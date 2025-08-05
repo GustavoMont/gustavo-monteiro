@@ -3,7 +3,7 @@ import { PostBanner } from "@/components/posts/PostBanner";
 import { PostCard } from "@/components/posts/PostCard";
 import { PostContenFormatter } from "@/components/posts/PostContentFormatter";
 import { Divider } from "@/components/ui/Divider";
-import { dummyPosts } from "@/utils/dummy-posts.utils";
+import post from "@/models/post";
 
 type Params = Promise<{
   slug: string;
@@ -14,14 +14,15 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  return dummyPosts.map(({ slug }) => ({
+  const posts = await post.listPosts();
+  return posts.map(({ slug }) => ({
     slug,
   }));
 }
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
-  const foundPost = dummyPosts.find(({ slug: postSlug }) => postSlug === slug);
+  const foundPost = await post.findBySlug(slug);
 
   if (!foundPost) {
     return <NotFoundPage />;
@@ -39,10 +40,8 @@ export default async function PostPage({ params }: Props) {
   );
 }
 
-function PostCarrousel({ slug }: { slug: string }) {
-  const filteredPosts = dummyPosts.filter(
-    ({ slug: postSlug }) => slug !== postSlug,
-  );
+async function PostCarrousel({ slug }: { slug: string }) {
+  const filteredPosts = await post.listPosts({ exclude: slug });
 
   return (
     <div className="carousel carousel-start rounded-box max-w-full space-x-6 p-4">

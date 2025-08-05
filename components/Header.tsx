@@ -1,4 +1,4 @@
-import Menu from "@/navigation/Menu";
+import Menu from "@/components/ui/navigation/Menu";
 import { Avatar } from "./Avatar";
 import { InstagramIcon } from "./icons/SocialMedia";
 import { Divider } from "./ui/Divider";
