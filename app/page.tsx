@@ -1,14 +1,5 @@
-import { Post, PostTypeEnum } from "@/@types/post";
 import { PostCard } from "@/components/posts/PostCard";
-
-const dummyPosts: Post[] = Array.from({ length: 6 }).map((_, i) => ({
-  slug: `post-${i}`,
-  description: `Lorem ipsum dolor sit amet consectetur. Aliquam faucibus tempor cursus id. ${i}`,
-  title: `Post ${i}`,
-  type: i % 2 === 0 ? PostTypeEnum.POETRY : PostTypeEnum.TEXT,
-  writtenAt: new Date().toISOString(),
-  banner: "https://picsum.photos/600",
-}));
+import { dummyPosts } from "@/utils/dummy-posts.utils";
 
 export default function HomePage() {
   return (

@@ -1,6 +1,7 @@
 import Menu from "@/navigation/Menu";
 import { Avatar } from "./Avatar";
 import { InstagramIcon } from "./icons/SocialMedia";
+import { Divider } from "./ui/Divider";
 
 export function Header() {
   return (
@@ -17,7 +18,7 @@ function MobileHeader() {
       <h1 className="text-primary text-2xl font-medium">Gustavo Monteiro</h1>
       <Presentation />
       <Menu />
-      <hr className="border-primary" />
+      <Divider />
     </header>
   );
 }
@@ -31,7 +32,7 @@ function DesktopHeader() {
       </aside>
       <header className="hidden lg:flex flex-col gap-6 mb-6">
         <h1 className="text-primary text-2xl font-medium">Gustavo Monteiro</h1>
-        <hr className="border-primary" />
+        <Divider />
       </header>
     </>
   );

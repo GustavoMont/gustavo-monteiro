@@ -5,6 +5,7 @@ export type Post = {
   type: PostTypeEnum;
   slug: string;
   banner: string;
+  content: string;
 };
 
 export enum PostTypeEnum {
