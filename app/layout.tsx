@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="pt-br" className={montserrat.className}>
       <body className="p-4 lg:pl-96 lg:px-8 py-4 min-h-screen w-full flex flex-col max-w-[1592px] mx-auto">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 relative">{children}</main>
         <Footer />
       </body>
     </html>
