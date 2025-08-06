@@ -1,3 +1,9 @@
+import orchestrator from "@/tests/orchestrator";
+
+beforeAll(async () => {
+  await orchestrator.waitForAllServices();
+});
+
 describe("GET /api/v1/posts/[slug]", () => {
   test("with no existing post", async () => {
     const response = await fetch(

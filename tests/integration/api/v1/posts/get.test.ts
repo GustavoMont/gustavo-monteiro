@@ -1,6 +1,11 @@
 import fileReader from "@/models/file-reader";
 import post from "@/models/post";
+import orchestrator from "@/tests/orchestrator";
 import { resolve } from "path";
+
+beforeAll(async () => {
+  await orchestrator.waitForAllServices();
+});
 
 describe("GET /api/v1/posts", () => {
   test("listing posts", async () => {
