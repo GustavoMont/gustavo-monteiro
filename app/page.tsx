@@ -1,8 +1,9 @@
+import { Post } from "@/@types/post";
 import { PostCard } from "@/components/posts/PostCard";
-import post from "@/models/post";
+import api from "@/infra/api";
 
 export default async function HomePage() {
-  const posts = await post.listPosts();
+  const { data: posts } = await api.get<Post[]>("posts");
 
   if (!posts.length) {
     return (
