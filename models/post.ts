@@ -2,6 +2,7 @@ import { Post, PostTypeEnum } from "@/@types/post";
 import { resolve } from "node:path";
 import grayMatter from "gray-matter";
 import fileReader from "./file-reader";
+import { NotFoundError } from "@/infra/erros";
 
 type ListParams = Partial<{
   exclude: string;
@@ -31,8 +32,8 @@ async function findBySlug(slug: string): Promise<Post> {
   let fileContent: string;
   try {
     fileContent = await fileReader.readFile(resolve(POST_PATH, fileName));
-  } catch {
-    return null;
+  } catch (error) {
+    throw new NotFoundError({ cause: error, message: "Post não encontrado." });
   }
   const { content, data } = grayMatter(fileContent);
   const writtenAt = data.writtenAt.toISOString();

@@ -3,6 +3,7 @@ import post from "@/models/post";
 import { faker } from "@faker-js/faker";
 import { PostTypeEnum } from "@/@types/post";
 import { resolve } from "node:path";
+import { NotFoundError } from "@/infra/erros";
 
 describe('"Post" Model', () => {
   beforeEach(() => {
@@ -44,8 +45,9 @@ describe('"Post" Model', () => {
   });
   describe("findBySlug", () => {
     test("with no existing file", async () => {
-      const foundPost = await post.findBySlug("file-not-exists");
-      expect(foundPost).toBe(null);
+      expect(
+        async () => await post.findBySlug("file-not-exists"),
+      ).rejects.toThrow(NotFoundError);
     });
     test("with existing file", async () => {
       const title = faker.book.title();

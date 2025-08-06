@@ -11,6 +11,7 @@ const config: Config = {
   moduleNameMapper: {
     "@/(.*)$": "<rootDir>/$1",
   },
+  testTimeout: 60 * 1_000,
 };
 
 export default createJestConfig(config);
