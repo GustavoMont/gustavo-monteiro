@@ -1,8 +1,10 @@
+import { Post } from "@/@types/post";
 import NotFoundPage from "@/app/not-found";
 import { PostBanner } from "@/components/posts/PostBanner";
 import { PostCard } from "@/components/posts/PostCard";
 import { PostContenFormatter } from "@/components/posts/PostContentFormatter";
 import { Divider } from "@/components/ui/Divider";
+import api from "@/infra/api";
 import post from "@/models/post";
 
 type Params = Promise<{
@@ -22,16 +24,17 @@ export async function generateStaticParams() {
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
-  const foundPost = await post.findBySlug(slug);
 
-  if (!foundPost) {
+  const { data, statusCode } = await api.get<Post>(`/posts/${slug}`);
+
+  if (statusCode !== 200) {
     return <NotFoundPage />;
   }
 
   return (
     <section>
-      <PostBanner post={foundPost} />
-      <PostContenFormatter content={foundPost.content} />
+      <PostBanner post={data} />
+      <PostContenFormatter content={data.content} />
       <div className="my-4">
         <Divider />
       </div>
