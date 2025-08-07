@@ -44,7 +44,9 @@ export default async function PostPage({ params }: Props) {
 }
 
 async function PostCarrousel({ slug }: { slug: string }) {
-  const filteredPosts = await post.listPosts({ exclude: slug });
+  const { data: filteredPosts } = await api.get<Post[]>(
+    `/posts?exclude=${slug}`,
+  );
 
   return (
     <div className="carousel carousel-start rounded-box max-w-full space-x-6 p-4">
