@@ -2,6 +2,7 @@ import Menu from "@/components/ui/navigation/Menu";
 import { Avatar } from "./Avatar";
 import { InstagramIcon } from "./icons/SocialMedia";
 import { Divider } from "./ui/Divider";
+import Link from "next/link";
 
 export function Header() {
   return (
@@ -44,7 +45,9 @@ function Presentation() {
       <Avatar />
       <div className="flex flex-col gap-1">
         <p>Olá, sou o Gustavo, e espero que goste do que eu escrevo</p>
-        <InstagramIcon className="w-6 fill-secondary" />
+        <Link href={"https://instagram.com/gustavomont_136"} target="_blank">
+          <InstagramIcon className="w-6 fill-secondary" />
+        </Link>
       </div>
     </div>
   );
