@@ -6,6 +6,8 @@ import { PostContenFormatter } from "@/components/posts/PostContentFormatter";
 import { Divider } from "@/components/ui/Divider";
 import api from "@/infra/api";
 import post from "@/models/post";
+import { getTypeText } from "@/utils/post-type.utils";
+import { Metadata } from "next";
 
 type Params = Promise<{
   slug: string;
@@ -14,6 +16,23 @@ type Params = Promise<{
 type Props = {
   params: Params;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = (await params).slug;
+
+  const { data: post, statusCode } = await api.get<Post>(`/posts/${slug}`);
+
+  if (statusCode !== 200) {
+    return {
+      title: "Oops, post não encontrado :/ - Gustavo Monteiro",
+    };
+  }
+
+  return {
+    title: `${post.title} - ${getTypeText(post.type)} por Gustavo Monteiro`,
+    description: post.description,
+  };
+}
 
 export async function generateStaticParams() {
   const posts = await post.listPosts();
