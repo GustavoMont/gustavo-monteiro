@@ -2,12 +2,6 @@ import { Post } from "@/@types/post";
 import { PostCard } from "@/components/posts/PostCard";
 import api from "@/infra/api";
 import NotFoundPage from "./not-found";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Gustavo Monteiro - Seja bem-vindo(a) ao meu blog",
-  description: "Poemas e reflexões a partir de um olhar cristão.",
-};
 
 export default async function HomePage() {
   let posts: Post[];

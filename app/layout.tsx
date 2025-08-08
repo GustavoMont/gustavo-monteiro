@@ -1,11 +1,17 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import "@/styles/globals.css";
+import { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
+
+export const metadata: Metadata = {
+  title: "Gustavo Monteiro - Seja bem-vindo(a) ao meu blog",
+  description: "Poemas e reflexões a partir de um olhar cristão.",
+};
 
 export default function RootLayout({
   children,
