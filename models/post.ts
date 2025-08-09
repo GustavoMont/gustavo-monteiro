@@ -10,6 +10,41 @@ type ListParams = Partial<{
 
 const POST_PATH = "_posts";
 
+type CreatePostPayload = Omit<Post, "slug" | "writtenAt">;
+
+async function createPost(payload: CreatePostPayload) {
+  const slug = payload.title.toLowerCase().replace(/\s/g, "-");
+  const newPost: Post = {
+    ...payload,
+    slug,
+    writtenAt: new Date().toISOString(),
+  };
+
+  const fileContent = parseToFileContent(newPost);
+  const postPath = resolve(POST_PATH, `${slug}.md`);
+  await fileReader.createFile(postPath, fileContent);
+
+  return newPost;
+
+  function parseToFileContent(post: Post): string {
+    const metadataFields: (keyof Post)[] = [
+      "title",
+      "description",
+      "banner",
+      "type",
+      "writtenAt",
+    ];
+    let metadataContent = "---\n";
+    for (const field of metadataFields) {
+      metadataContent += `${field}: ${post[field]}\n`;
+    }
+    metadataContent += "---\n";
+    const content = `${metadataContent}\n${post.content}`;
+
+    return content;
+  }
+}
+
 async function listPosts({ exclude }: ListParams = {}): Promise<Post[]> {
   const allFiles = await fileReader.listDirFiles(resolve(POST_PATH));
 
@@ -50,6 +85,6 @@ async function findBySlug(slug: string): Promise<Post> {
   };
 }
 
-const post = { listPosts, findBySlug, POST_PATH };
+const post = { listPosts, findBySlug, createPost, POST_PATH };
 
 export default post;
