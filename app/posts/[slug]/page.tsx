@@ -51,7 +51,7 @@ export default async function PostPage({ params }: Props) {
   }
 
   return (
-    <section>
+    <section className="flex flex-col gap-4 max-w-4xl">
       <PostBanner post={data} />
       <PostContenFormatter content={data.content} />
       <div className="my-4">

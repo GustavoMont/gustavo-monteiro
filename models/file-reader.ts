@@ -13,6 +13,7 @@ function checkDir(path: string) {
 
 async function listDirFiles(path: string): Promise<string[]> {
   const dirExists = checkDir(path);
+
   if (!dirExists) {
     return [];
   }
@@ -46,6 +47,6 @@ async function readFile(path: string): Promise<string> {
   return fileContent;
 }
 
-const fileReader = { listDirFiles, readFile, checkDir, createFile };
+const fileReader = { listDirFiles, readFile, createFile };
 
 export default fileReader;
