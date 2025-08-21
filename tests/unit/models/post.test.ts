@@ -4,6 +4,9 @@ import { faker } from "@faker-js/faker";
 import { PostTypeEnum } from "@/@types/post";
 import { resolve } from "node:path";
 import { NotFoundError } from "@/infra/erros";
+import fs from "node:fs";
+
+jest.mock("node:fs");
 
 describe('"Post" Model', () => {
   beforeEach(() => {
@@ -11,7 +14,7 @@ describe('"Post" Model', () => {
   });
   describe("listPosts", () => {
     test("with not existing directory", async () => {
-      jest.spyOn(fileReader, "checkDir").mockReturnValue(false);
+      jest.spyOn(fs, "existsSync").mockReturnValue(false);
       const posts = await post.listPosts();
       expect(posts).toStrictEqual([]);
     });
