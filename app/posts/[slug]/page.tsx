@@ -4,7 +4,6 @@ import { PostBanner } from "@/components/posts/PostBanner";
 import { PostCard } from "@/components/posts/PostCard";
 import { PostContenFormatter } from "@/components/posts/PostContentFormatter";
 import { Divider } from "@/components/ui/Divider";
-import api from "@/infra/api";
 import post from "@/models/post";
 import { getTypeText } from "@/utils/post-type.utils";
 import { Metadata } from "next";
@@ -18,19 +17,19 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = (await params).slug;
-
-  const { data: post, statusCode } = await api.get<Post>(`/posts/${slug}`);
-
-  if (statusCode !== 200) {
+  const { slug } = await params;
+  let postObject: Post;
+  try {
+    postObject = await post.findBySlug(slug);
+  } catch {
     return {
       title: "Oops, post não encontrado :/ - Gustavo Monteiro",
     };
   }
 
   return {
-    title: `${post.title} - ${getTypeText(post.type)} por Gustavo Monteiro`,
-    description: post.description,
+    title: `${postObject.title} - ${getTypeText(postObject.type)} por Gustavo Monteiro`,
+    description: postObject.description,
   };
 }
 
@@ -43,10 +42,10 @@ export async function generateStaticParams() {
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
-
-  const { data, statusCode } = await api.get<Post>(`/posts/${slug}`);
-
-  if (statusCode !== 200) {
+  let data: Post;
+  try {
+    data = await post.findBySlug(slug);
+  } catch {
     return <NotFoundPage />;
   }
 
@@ -63,9 +62,7 @@ export default async function PostPage({ params }: Props) {
 }
 
 async function PostCarrousel({ slug }: { slug: string }) {
-  const { data: filteredPosts } = await api.get<Post[]>(
-    `/posts?exclude=${slug}`,
-  );
+  const filteredPosts = await post.listPosts({ exclude: slug });
 
   return (
     <div className="carousel carousel-start rounded-box max-w-full space-x-6 p-4">

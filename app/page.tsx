@@ -1,16 +1,8 @@
-import { Post } from "@/@types/post";
 import { PostCard } from "@/components/posts/PostCard";
-import api from "@/infra/api";
-import NotFoundPage from "./not-found";
+import post from "@/models/post";
 
 export default async function HomePage() {
-  let posts: Post[];
-  try {
-    const { data } = await api.get<Post[]>("posts");
-    posts = data;
-  } catch {
-    return <NotFoundPage />;
-  }
+  const posts = await post.listPosts();
 
   if (!posts.length) {
     return (
