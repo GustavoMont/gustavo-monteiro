@@ -1,6 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "Monthly Patch and Minor Updates",
+      "schedule": ["on the first day of the month"]
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "groupName": null,
+      "schedule": [
+        "on the first day of the month in January,April,July,October"
+      ]
+    }
   ]
 }
