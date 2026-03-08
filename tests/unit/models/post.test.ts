@@ -64,7 +64,7 @@ describe('"Post" Model', () => {
       jest
         .spyOn(fileReader, "readFile")
         .mockResolvedValue(
-          `---\ntitle: ${title}\ndescription: ${description}\nwrittenAt: ${writtenAt}\ntype: ${type}\nbanner: ${banner}\n---\n${content}`,
+          `---\ntitle: "${title}"\ndescription: ${description}\nwrittenAt: ${writtenAt}\ntype: ${type}\nbanner: ${banner}\n---\n${content}`,
         );
       const slug = "existing-file";
       const foundPost = await post.findBySlug(slug);
