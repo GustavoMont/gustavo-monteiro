@@ -2,7 +2,7 @@ import { Post } from "@/@types/post";
 import NotFoundPage from "@/app/not-found";
 import { PostBanner } from "@/components/posts/PostBanner";
 import { PostCard } from "@/components/posts/PostCard";
-import { PostContenFormatter } from "@/components/posts/PostContentFormatter";
+import { PostContentFormatter } from "@/components/posts/PostContentFormatter";
 import { Divider } from "@/components/ui/Divider";
 import post from "@/models/post";
 import { getTypeText } from "@/utils/post-type.utils";
@@ -52,7 +52,7 @@ export default async function PostPage({ params }: Props) {
   return (
     <section className="flex flex-col gap-4 max-w-4xl">
       <PostBanner post={data} />
-      <PostContenFormatter content={data.content} />
+      <PostContentFormatter content={data.content} type={data.type} />
       <div className="my-4">
         <Divider />
       </div>
