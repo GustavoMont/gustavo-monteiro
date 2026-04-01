@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { Analytics } from "@/components/analytics/Analytics";
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import { Montserrat } from "next/font/google";
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1 relative flex flex-col">{children}</main>
         <Footer />
+        <Analytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       </body>
     </html>
   );

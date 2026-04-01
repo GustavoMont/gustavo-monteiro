@@ -5,8 +5,7 @@ const createJestConfig = nextJest({
   dir: "./",
 });
 
-// Add any custom config to be passed to Jest
-const config: Config = {
+const commonConfig: Config = {
   moduleDirectories: ["node_modules", "<rootDir>"],
   moduleNameMapper: {
     "@/(.*)$": "<rootDir>/$1",
@@ -14,4 +13,40 @@ const config: Config = {
   testTimeout: 60 * 1_000,
 };
 
-export default createJestConfig(config);
+const config: Config = {
+  projects: [
+    {
+      ...commonConfig,
+      displayName: "server",
+      testEnvironment: "node",
+      testMatch: [
+        "<rootDir>/tests/unit/models/**/*.test.ts",
+        "<rootDir>/tests/integration/api/**/*.test.ts",
+      ],
+    },
+    {
+      ...commonConfig,
+      displayName: "ui",
+      testEnvironment: "jsdom",
+      testMatch: ["<rootDir>/tests/unit/components/**/*.test.tsx"],
+      setupFilesAfterEnv: ["<rootDir>/tests/setup-tests.ts"],
+    },
+  ],
+};
+
+async function jestConfig() {
+  const nextJestConfig = await createJestConfig(commonConfig)();
+
+  config.projects = (config.projects as Config[]).map((project) => ({
+    ...nextJestConfig,
+    ...project,
+    moduleNameMapper: {
+      ...nextJestConfig.moduleNameMapper,
+      ...project.moduleNameMapper,
+    },
+  }));
+
+  return config;
+}
+
+export default jestConfig;
